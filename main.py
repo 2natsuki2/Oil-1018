@@ -46,7 +46,8 @@ if filepath:
     df_improved['hour'] = df_improved.index.hour
 
     # 工夫②：1時間前の温度のヒントを追加
-    df_improved['OT_lag_1'] = df_improved['OT'].shift(1) # shift(1)を使用
+    # (あなたが実験して精度が出た shift(1) を使います)
+    df_improved['OT_lag_1'] = df_improved['OT'].shift(1) 
     df_improved = df_improved.dropna() # 最初の行はデータがないので削除
 
     # 「答え（OT）」と「ヒント（それ以外）」を分ける

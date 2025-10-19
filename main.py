@@ -13,9 +13,9 @@ import japanize_matplotlib # グラフの日本語化
 # -----------------------------------------------------------
 # ファイル選択ウィンドウの準備
 root = tk.Tk()
-root.withdraw() # 小さなウィンドウが表示されないように隠す
+root.withdraw() # 小さなウィンドウを隠す
 
-# ファイル選択ウィンドウを開き、選ばれたファイルのパスを取得
+# パスを取得
 filepath = filedialog.askopenfilename(
     title="分析したいCSVファイルを選択してください",
     filetypes=[("CSVファイル", "*.csv")] 
@@ -43,9 +43,8 @@ if filepath:
     df_improved['hour'] = df_improved.index.hour
 
     # 工夫②：1時間前の温度のヒントを追加
-    # (あなたが実験して精度が出た shift(1) を使います)
     df_improved['OT_lag_1'] = df_improved['OT'].shift(1) 
-    df_improved = df_improved.dropna() # 最初の行はデータがないので削除
+    df_improved = df_improved.dropna() 
 
     # 「答え（OT）」と「ヒント（それ以外）」を分ける
     target = 'OT'
